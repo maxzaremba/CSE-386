@@ -55,7 +55,7 @@ color RayTracer::traceRay(const IScene& theScene, const PositionalLight& Light,
 		}
 
 		if (depth > 0) {
-			// View direction for specular
+			// Viewing direction for specular
 			dvec3 inci = glm::normalize(ray.dir);
 			dvec3 R = inci - 2.0f * glm::dot(hit.normal, inci) * hit.normal;
 			dvec3 RR = glm::normalize(R);
@@ -163,6 +163,7 @@ void RayTracer::raytraceScene(FrameBuffer & frameBuffer, int depth,
 
 			int antiAliasing = theScene.antiAliasing;
 
+			// Calculate positional light
 			for (int k = 0; k < pLights.size(); k++) {
 				if (pLights[k]->isOn) {
 					for (int i = 0; i < antiAliasing; i++) {
@@ -176,6 +177,7 @@ void RayTracer::raytraceScene(FrameBuffer & frameBuffer, int depth,
 				}
 			}
 
+			// Calculate spotligt
 			for (int k = 0; k < sLights.size(); k++) {
 				if (sLights[k]->isOn) {
 					for (int i = 0; i < antiAliasing; i++) {
@@ -190,6 +192,7 @@ void RayTracer::raytraceScene(FrameBuffer & frameBuffer, int depth,
 				}
 			}
 
+            // Set alias scale and compute final pixel color.
 			double aliasScale = antiAliasing * antiAliasing;
 			finalColor = finalColor / aliasScale;
 			frameBuffer.setColor(x, y, finalColor);
