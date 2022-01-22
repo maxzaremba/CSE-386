@@ -177,7 +177,7 @@ void RayTracer::raytraceScene(FrameBuffer & frameBuffer, int depth,
 				}
 			}
 
-			// Calculate spotligt
+			// Calculate spotlight
 			for (int k = 0; k < sLights.size(); k++) {
 				if (sLights[k]->isOn) {
 					for (int i = 0; i < antiAliasing; i++) {
@@ -192,7 +192,7 @@ void RayTracer::raytraceScene(FrameBuffer & frameBuffer, int depth,
 				}
 			}
 
-            // Set alias scale and compute final pixel color.
+            // Set alias scale and compute final pixel color
 			double aliasScale = antiAliasing * antiAliasing;
 			finalColor = finalColor / aliasScale;
 			frameBuffer.setColor(x, y, finalColor);
