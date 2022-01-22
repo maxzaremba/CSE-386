@@ -1,4 +1,4 @@
-The base code of the project was written by Profs Eric Bachman and Mike Zmuda. 
+The base code of this project was written by professors Eric Bachman and Mike Zmuda. 
 
 Full Documentation
 -------------------------------------
